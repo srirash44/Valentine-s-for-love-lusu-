@@ -345,7 +345,7 @@
               (Type in format: <b>DD-MM</b>)
             </div>
 
-            <input id="passInput" type="text" placeholder="Example: 01-05"/>
+            <input id="passInput" type="text" placeholder="Example: 07-05"/>
 
             <div class="btnRow">
               <button class="btn btnMain" onclick="unlock()">Unlock 🔓</button>
@@ -366,7 +366,7 @@
 
             <!-- Love Game -->
             <div class="funQ">
-              <h3 id="funTitle">🎮 Love Game</h3>
+              <h3 id="funTitle">Sollu di..</h3>
               <div class="sub" id="funText">
                 Should I keep loving you forever and never stop? 😌❤️
               </div>
@@ -381,7 +381,7 @@
 
             <!-- Our Photo (ONLY AFTER YES) -->
             <div class="ourPhoto" id="photoReward">
-              <img id="ourPhotoImg" src="photos/us1.jpg" alt="our photo"/>
+              <img id="ourPhotoImg" src="us.jpg" alt="our photo"/>
               <span id="ourPhotoCap">Us ❤️</span>
             </div>
 
@@ -417,7 +417,7 @@
       // 2) PASSWORD
       passQuestion: "When is my birthday?",
       passHint: "(Type in format: DD-MM)",
-      password: "01-05", // CHANGE THIS
+      password: "01-03", // CHANGE THIS
 
       // 4) MESSAGE WITH LOVE (after unlock)
       message: `
@@ -426,14 +426,14 @@
       `,
 
       // 5) LOVE GAME
-      funTitle: "🎮 Love Game",
+      funTitle: "Sollu di.. 🤌",
       funText: "Should I keep you as my forever person for lifetime? 😤❤️",
       funYesReply: "😭❤️ Correct answer. Promise accepted 🤝✨",
       funNoReply: "🙄 No option not available. Try again later 😤❤️",
 
       // 6) OUR PHOTO (shows only after YES)
       photo: {
-        src: "photos/us1.jpg",
+        src: "us1.jpg",
         cap: "Us ❤️"
       }
     };
@@ -486,7 +486,7 @@
         document.getElementById("secretBox").style.display = "block";
 
         document.getElementById("subTitle").innerHTML =
-          "Unlocked 😭❤️<br>Now read carefully.";
+          "Unlocked 😭❤️<br>Correct ah.. sollita lusu.";
 
         confetti();
 
