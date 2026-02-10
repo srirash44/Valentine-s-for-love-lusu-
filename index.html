@@ -116,9 +116,7 @@
       border:1px solid rgba(255,255,255,.12);
     }
 
-    /* ================================
-       Day Arrival Animation
-       ================================ */
+    /* Day Arrival Animation */
     .arrival{
       text-align:center;
       padding:22px 16px;
@@ -160,15 +158,13 @@
       margin-top:6px;
     }
 
-    /* Hide unlock first, show after animation */
+    /* Hide unlock first */
     #unlockSection{
       display:none;
       animation: pop .6s ease;
     }
 
-    /* ================================
-       Unlock Box
-       ================================ */
+    /* Unlock Box */
     .unlockBox{
       margin-top:12px;
       padding:14px;
@@ -233,9 +229,7 @@
       font-size:13px;
     }
 
-    /* ================================
-       Secret Section (after unlock)
-       ================================ */
+    /* Secret */
     .secret{
       margin-top:14px;
       display:none;
@@ -254,9 +248,7 @@
     }
     .msg b{color:#ffd1dc}
 
-    /* ================================
-       Love Game
-       ================================ */
+    /* Love Game */
     .funQ{
       margin-top:14px;
       padding:14px;
@@ -282,9 +274,7 @@
       font-weight:800;
     }
 
-    /* ================================
-       Our Photo (shows only after YES)
-       ================================ */
+    /* Photo reward */
     .ourPhoto{
       width:100%;
       max-width:560px;
@@ -357,10 +347,7 @@
         <!-- PASSWORD -->
         <div id="unlockSection">
           <div class="unlockBox">
-            <div class="sub" id="unlockQuestion">
-              🔒 Password Question: <b>How many total letters in our name?</b><br>
-              (Hint: Number 😌)
-            </div>
+            <div class="sub" id="unlockQuestion"></div>
 
             <input id="passInput" type="text" placeholder="Type answer..."/>
 
@@ -380,10 +367,8 @@
 
             <!-- Love Game -->
             <div class="funQ">
-              <h3 id="funTitle">🧸 Sollu di…</h3>
-              <div class="sub" id="funText">
-                Should I hug you forever like your personal teddy? 😤🧸❤️
-              </div>
+              <h3 id="funTitle">🎮 Love Game</h3>
+              <div class="sub" id="funText"></div>
 
               <div class="btnRow">
                 <button class="btn btnMain" onclick="funYes()">YES 😭❤️</button>
@@ -396,7 +381,7 @@
             <!-- Photo -->
             <div class="ourPhoto" id="photoReward">
               <img id="ourPhotoImg" src="us2.jpg" alt="our photo"/>
-              <span id="ourPhotoCap">My Teddy + My Girl 🧸❤️</span>
+              <span id="ourPhotoCap"></span>
             </div>
 
           </div>
@@ -428,47 +413,60 @@
       passHint: "(Hint: Number 😌)",
       password: "14",
 
-      
+      message: `
+<b>Reethu…</b> 🧸❤️
+
+Indha Teddy Day la naan onnu sollanum…
+Teddy soft nu solvaanga… aana enakku <b>nee dhaan romba soft</b> 😌
+
+Nee en life la irundha podhum di…
+en mind calm aagidum, en heart happy aagidum 💗
+
+<b>Unna miss panna kooda enakku pidikum…</b>
+because adhu sollum “nee enakku evlo important” nu 😭
+
+<b>Happy Teddy Day diii 🧸💗</b>
+Naan eppavum un teddy maadhiri irupen… always for you.
+      `,
+
+      funTitle: "🧸 Sollu di…",
+      funText: "Should I hug you forever like your personal teddy? 😤🧸❤️",
+      funYesReply: "😭🧸❤️ Correct answer. Now you are officially my teddy girl 😌✨",
+      funNoReply: "🙄 NO button not working. Teddy already yours 😤🧸",
+
+      photo: {
+        src: "us2.jpg",
+        cap: "My Teddy + My Girl 🧸❤️"
+      }
+    };
 
     // =========================================================
     // Setup UI
     // =========================================================
     document.body.style.background = DAY.bg;
+
     document.getElementById("arrivalIcon").innerHTML = DAY.icon;
     document.getElementById("arrivalTitle").innerHTML = DAY.title;
- message: `
-<b>Reethu…</b> 🧸❤️<br><br>
-
-Indha Teddy Day la naan onnu sollanum…<br>
-Teddy soft nu solvaanga… aana enakku <b>nee dhaan romba soft</b> 😌<br><br>
-
-Nee en life la irundha podhum di…<br>
-en mind calm aagidum, en heart happy aagidum 💗<br><br>
-
-<b>Unna miss panna kooda enakku pidikum…</b><br>
-because adhu sollum “nee enakku evlo important” nu 😭<br><br>
-
-<b>Happy Teddy Day diii 🧸💗</b><br>
-Naan eppavum un teddy maadhiri irupen… always for you.
-`,
-   document.getElementById("arrivalMini").innerHTML = DAY.arrivalLine;
+    document.getElementById("arrivalMini").innerHTML = DAY.arrivalLine;
 
     document.getElementById("dayBadge").innerHTML = "💌 " + DAY.title;
+    document.getElementById("todayBadge").innerHTML = "📅 " + DAY.date;
 
     document.getElementById("unlockQuestion").innerHTML =
       `🔒 Password Question: <b>${DAY.passQuestion}</b><br>${DAY.passHint}`;
 
     document.getElementById("secretMsg").innerHTML = DAY.message;
 
-    // Date badge
-    const now = new Date();
-    document.getElementById("todayBadge").innerHTML =
-      "📍 " + now.toDateString();
+    document.getElementById("funTitle").innerHTML = DAY.funTitle;
+    document.getElementById("funText").innerHTML = DAY.funText;
+
+    document.getElementById("ourPhotoImg").src = DAY.photo.src;
+    document.getElementById("ourPhotoCap").innerHTML = DAY.photo.cap;
 
     // Show unlock section after arrival animation
     setTimeout(() => {
       document.getElementById("unlockSection").style.display = "block";
-    }, 1600);
+    }, 900);
 
     // =========================================================
     // Unlock logic
