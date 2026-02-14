@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Valentine Week ❤️</title>
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,Arial,sans-serif}
+    body{
+      min-height:100vh;
+      color:#fff;
+      background: radial-gradient(circle at top, #ff2f6d, #0b0b14);
+      overflow-x:hidden;
+    }
+
+    /* Floating Emojis */
+    .float{
+      position:fixed;
+      top:-30px;
+      font-size:18px;
+      opacity:.85;
+      animation: fall linear forwards;
+      z-index:0;
+      pointer-events:none;
+    }
+    @keyframes fall{
+      0%{transform:translateY(-20px) rotate(0deg);opacity:0}
+      10%{opacity:.95}
+      100%{transform:translateY(110vh) rotate(360deg);opacity:0}
+    }
+
+    .wrap{
+      position:relative;
+      z-index:2;
+      padding:22px 12px;
+      display:flex;
+      justify-content:center;
+    }
+
+    .card{
+      width:100%;
+      max-width:900px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.15);
+      backdrop-filter: blur(14px);
+      border-radius:26px;
+      padding:22px 16px;
+      box-shadow:0 0 45px rgba(255,0,90,.22);
+      animation: pop .9s ease;
+    }
+    @keyframes pop{
+      0%{transform:scale(.92);opacity:0}
+      100%{transform:scale(1);opacity:1}
+    }
+
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-bottom:14px;
+    }
+
+    h1{
+      font-size:28px;
+      font-weight:950;
+      letter-spacing:.3px;
+      line-height:1.2;
+    }
+    .sub{
+      opacity:.9;
+      font-size:14px;
+      line-height:1.55;
+      margin-top:6px;
+    }
+
+    .badgeRow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      align-items:center;
+    }
+
+    .badge{
+      padding:10px 14px;
+      border-radius:18px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.14);
+      font-weight:850;
+      font-size:13px;
+      white-space:nowrap;
+    }
+
+    /* Small Old Page Button */
+    .oldBtn{
+      text-decoration:none;
+      padding:10px 14px;
+      border-radius:18px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.14);
+      font-weight:900;
+      font-size:13px;
+      color:#fff;
+      transition:.25s ease;
+      white-space:nowrap;
+    }
+    .oldBtn:hover{transform:scale(1.05)}
+
+    .panel{
+      border-radius:22px;
+      padding:18px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+    }
+
+    /* Day Arrival Animation */
+    .arrival{
+      text-align:center;
+      padding:22px 16px;
+      border-radius:22px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      margin-bottom:14px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .arrivalIcon{
+      font-size:58px;
+      animation: popIn .8s ease, pulseGlow 2s infinite;
+    }
+
+    @keyframes popIn{
+      0%{transform:scale(.2);opacity:0}
+      100%{transform:scale(1);opacity:1}
+    }
+
+    @keyframes pulseGlow{
+      0%{filter:drop-shadow(0 0 0 rgba(255,47,109,.0))}
+      50%{filter:drop-shadow(0 0 18px rgba(255,47,109,.55))}
+      100%{filter:drop-shadow(0 0 0 rgba(255,47,109,.0))}
+    }
+
+    .arrivalText{
+      margin-top:10px;
+      font-size:20px;
+      font-weight:950;
+      line-height:1.2;
+    }
+
+    .arrivalMini{
+      opacity:.9;
+      font-size:13px;
+      line-height:1.6;
+      margin-top:6px;
+    }
+
+    /* Hide unlock first */
+    #unlockSection{
+      display:none;
+      animation: pop .6s ease;
+    }
+
+    /* Unlock Box */
+    .unlockBox{
+      margin-top:12px;
+      padding:14px;
+      border-radius:20px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+    }
+
+    .unlockBox input{
+      width:100%;
+      padding:12px 14px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(0,0,0,.35);
+      color:#fff;
+      font-weight:850;
+      outline:none;
+      margin-top:10px;
+      font-size:14px;
+      text-transform: lowercase;
+    }
+
+    .btnRow{
+      display:flex;
+      gap:10px;
+      margin-top:12px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      border:none;
+      padding:12px 16px;
+      border-radius:18px;
+      font-weight:900;
+      cursor:pointer;
+      transition:.25s ease;
+      font-size:13px;
+    }
+
+    .btnMain{
+      background:#ff2f6d;
+      color:#fff;
+      box-shadow:0 0 18px rgba(255,47,109,.35);
+    }
+    .btnMain:hover{transform:scale(1.05)}
+
+    .btnSoft{
+      background:rgba(255,255,255,.10);
+      color:#fff;
+      border:1px solid rgba(255,255,255,.16);
+    }
+    .btnSoft:hover{transform:scale(1.05)}
+
+    .warn{
+      margin-top:10px;
+      display:none;
+      padding:10px 12px;
+      border-radius:16px;
+      background:rgba(255,47,109,.10);
+      border:1px solid rgba(255,47,109,.22);
+      line-height:1.6;
+      font-weight:800;
+      font-size:13px;
+    }
+
+    /* Secret */
+    .secret{
+      margin-top:14px;
+      display:none;
+      padding:16px;
+      border-radius:22px;
+      background:rgba(255,47,109,.10);
+      border:1px solid rgba(255,47,109,.22);
+      animation: pop .6s ease;
+    }
+
+    .msg{
+      line-height:1.9;
+      font-size:15px;
+      opacity:.98;
+      white-space:pre-line;
+    }
+    .msg b{color:#ffd1dc}
+
+    /* Love Game */
+    .funQ{
+      margin-top:14px;
+      padding:14px;
+      border-radius:18px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+    }
+    .funQ h3{
+      font-size:16px;
+      font-weight:950;
+      margin-bottom:8px;
+    }
+
+    .toast{
+      margin-top:12px;
+      display:none;
+      padding:12px 14px;
+      border-radius:18px;
+      background:rgba(0,0,0,.35);
+      border:1px solid rgba(255,255,255,.16);
+      backdrop-filter: blur(10px);
+      line-height:1.7;
+      font-weight:800;
+    }
+
+    /* Photo reward */
+    .ourPhoto{
+      width:100%;
+      max-width:560px;
+      margin:14px auto 0 auto;
+      border-radius:22px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      box-shadow:0 0 35px rgba(255,0,90,.18);
+      display:none;
+      animation: pop .6s ease;
+    }
+    .ourPhoto img{
+      width:100%;
+      display:block;
+      object-fit:cover;
+      aspect-ratio: 16/10;
+      filter:contrast(1.05) saturate(1.2);
+    }
+    .ourPhoto span{
+      display:block;
+      padding:12px 14px;
+      font-weight:900;
+      font-size:13px;
+      background:rgba(0,0,0,.25);
+      border-top:1px solid rgba(255,255,255,.10);
+    }
+
+    footer{
+      margin-top:16px;
+      text-align:center;
+      opacity:.85;
+      font-size:12px;
+      line-height:1.6;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="wrap">
+    <div class="card">
+
+      <header>
+        <div>
+          <h1 id="mainTitle">Valentine Week ❤️</h1>
+          <div class="sub" id="subTitle">
+            Today’s content is locked 🔒
+          </div>
+        </div>
+
+        <div class="badgeRow">
+          <a class="oldBtn" href="kiss.html">📌 Old Day</a>
+          <div class="badge" id="todayBadge">📅 Loading…</div>
+          <div class="badge" id="dayBadge">💌 Loading…</div>
+        </div>
+      </header>
+
+      <div class="panel">
+
+        <!-- ARRIVAL -->
+        <div class="arrival">
+          <div class="arrivalIcon" id="arrivalIcon">❤️</div>
+          <div class="arrivalText" id="arrivalTitle">Valentine’s Day</div>
+          <div class="arrivalMini" id="arrivalMini">
+            Valentine’s Day is arriving… and you’re my favorite part of life 😭❤️
+          </div>
+        </div>
+
+        <!-- PASSWORD -->
+        <div id="unlockSection">
+          <div class="unlockBox">
+            <div class="sub" id="unlockQuestion"></div>
+
+            <input id="passInput" type="text" placeholder="Type answer..."/>
+
+            <div class="btnRow">
+              <button class="btn btnMain" onclick="unlock()">Unlock 🔓</button>
+              <button class="btn btnSoft" onclick="clearInput()">Clear</button>
+            </div>
+
+            <div class="warn" id="warnBox"></div>
+          </div>
+
+          <!-- SECRET -->
+          <div class="secret" id="secretBox">
+
+            <!-- Message -->
+            <div class="msg" id="secretMsg"></div>
+
+            <!-- Love Game -->
+            <div class="funQ">
+              <h3 id="funTitle">🎮 Love Game</h3>
+              <div class="sub" id="funText"></div>
+
+              <div class="btnRow">
+                <button class="btn btnMain" onclick="funYes()">YES 😭❤️</button>
+                <button class="btn btnSoft" id="funNoBtn">NO 🙄</button>
+              </div>
+
+              <div class="toast" id="toast"></div>
+            </div>
+
+            <!-- Photo -->
+            <div class="ourPhoto" id="photoReward">
+              <img id="ourPhotoImg" src="us6.jpg" alt="our photo"/>
+              <span id="ourPhotoCap"></span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <footer>
+        Only for one heart 💗 | Made with love
+      </footer>
+
+    </div>
+  </div>
+
+  <script>
+    // =========================================================
+    // VALENTINE'S DAY SETTINGS
+    // =========================================================
+    const DAY = {
+      title: "Valentine’s Day",
+      icon: "❤️",
+      date: "Saturday – February 14, 2026",
+      arrivalLine: "Valentine’s Day is arriving… and you’re my favorite part of life 😭❤️",
+
+      bg: "radial-gradient(circle at top, #ff4d7d, #0b0b14)",
+      floats: ["❤️","💗","💖","💕","✨","🫶","💘"],
+
+      // PASSWORD
+      passQuestion: "Who are you to me?",
+      passHint: "(Hint: 4 letters 😌)",
+      password: "wife",
+
+      // MESSAGE (short)
+      message: `
+<b>Reethu…</b> ❤️<br><br>
+
+This Valentine’s Day…<br>
+I’m just feeling one thing:<br><br>
+
+<b>I’m so happy to have you in my life.</b> 😭💗<br><br>
+
+You are my peace, my smile, my comfort.<br>
+And one day… my <b>wife</b> 😌❤️<br><br>
+
+<b>Happy Valentine’s Day diii 💘</b>
+      `,
+
+      // LOVE GAME
+      funTitle: "❤️ Sollu di…",
+      funText: "Should we stay like this forever and become husband & wife one day? 😤💍",
+      funYesReply: "😭💘 Correct answer. Forever confirmed 😌✨",
+      funNoReply: "🙄 NO not allowed. Wife already booked 😤❤️",
+
+      // PHOTO
+      photo: {
+        src: "us6.jpg",
+        cap: "Forever Us ❤️"
+      }
+    };
+
+    // =========================================================
+    // Setup UI
+    // =========================================================
+    document.body.style.background = DAY.bg;
+
+    document.getElementById("arrivalIcon").innerHTML = DAY.icon;
+    document.getElementById("arrivalTitle").innerHTML = DAY.title;
+    document.getElementById("arrivalMini").innerHTML = DAY.arrivalLine;
+
+    document.getElementById("dayBadge").innerHTML = "💌 " + DAY.title;
+    document.getElementById("todayBadge").innerHTML = "📅 " + DAY.date;
+
+    document.getElementById("unlockQuestion").innerHTML =
+      `🔒 Password Question: <b>${DAY.passQuestion}</b><br>${DAY.passHint}`;
+
+    document.getElementById("secretMsg").innerHTML = DAY.message;
+
+    document.getElementById("funTitle").innerHTML = DAY.funTitle;
+    document.getElementById("funText").innerHTML = DAY.funText;
+
+    document.getElementById("ourPhotoImg").src = DAY.photo.src;
+    document.getElementById("ourPhotoCap").innerHTML = DAY.photo.cap;
+
+    // Show unlock section after arrival animation
+    setTimeout(() => {
+      document.getElementById("unlockSection").style.display = "block";
+    }, 900);
+
+    // =========================================================
+    // Unlock logic
+    // =========================================================
+    function normalize(x){
+      return (x || "").trim().toLowerCase().replace(/\s+/g,"");
+    }
+
+    function unlock(){
+      const input = normalize(document.getElementById("passInput").value);
+      const correct = normalize(DAY.password);
+      const warn = document.getElementById("warnBox");
+
+      if(input === correct){
+        warn.style.display = "none";
+        document.getElementById("secretBox").style.display = "block";
+
+        document.getElementById("subTitle").innerHTML =
+          "Unlocked 😭❤️<br>Correct ah… my future wife 😌💍";
+
+        confetti();
+
+        setTimeout(() => {
+          document.getElementById("secretBox").scrollIntoView({behavior:"smooth"});
+        }, 250);
+
+      }else{
+        warn.style.display = "block";
+        warn.innerHTML = "❌ Wrong answer 😤<br>Try again ❤️";
+      }
+    }
+
+    function clearInput(){
+      document.getElementById("passInput").value = "";
+      document.getElementById("warnBox").style.display = "none";
+    }
+
+    document.getElementById("passInput").addEventListener("keydown", (e) => {
+      if(e.key === "Enter") unlock();
+    });
+
+    // =========================================================
+    // Love Game
+    // =========================================================
+    function funYes(){
+      const t = document.getElementById("toast");
+      t.style.display = "block";
+      t.innerHTML = "💗 " + DAY.funYesReply;
+
+      // SHOW PHOTO ONLY AFTER YES
+      document.getElementById("photoReward").style.display = "block";
+
+      confetti();
+
+      setTimeout(() => {
+        document.getElementById("photoReward").scrollIntoView({behavior:"smooth"});
+      }, 250);
+    }
+
+    const funNoBtn = document.getElementById("funNoBtn");
+    funNoBtn.addEventListener("mouseenter", funNoMove);
+    funNoBtn.addEventListener("click", funNoMove);
+
+    function funNoMove(){
+      const t = document.getElementById("toast");
+      t.style.display = "block";
+      t.innerHTML = "💀 " + DAY.funNoReply;
+
+      const x = Math.random() * 160 - 80;
+      const y = Math.random() * 90 - 45;
+      funNoBtn.style.transform = `translate(${x}px, ${y}px)`;
+    }
+
+    // =========================================================
+    // Floating theme emojis
+    // =========================================================
+    function createFloat(){
+      const f = document.createElement("div");
+      f.classList.add("float");
+      f.innerText = DAY.floats[Math.floor(Math.random()*DAY.floats.length)];
+      f.style.left = Math.random() * 100 + "vw";
+      f.style.animationDuration = (3 + Math.random() * 4) + "s";
+      f.style.fontSize = (14 + Math.random() * 18) + "px";
+      document.body.appendChild(f);
+      setTimeout(() => f.remove(), 7500);
+    }
+    setInterval(createFloat, 280);
+
+    function confetti(){
+      for(let i=0;i<18;i++){
+        setTimeout(createFloat, i*55);
+      }
+    }
+  </script>
+
+</body>
+</html>
